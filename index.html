@@ -6,29 +6,28 @@
     <meta name="description" content="Personal portfolio of John Bro, Freshman Computer Science Student at Florida Polytechnic University and Aspiring Software Engineer.">
     <title>John Bro | Computer Science Student</title>
     
-    <!-- Google Fonts: Inter -->
+    <!-- Modern Sans-Serif Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           1. CSS VARIABLES & RESET
+           1. CSS VARIABLES & BASE RESET
            ========================================================================== */
         :root {
-            --primary: #2563eb;         /* Crisp modern blue */
+            --primary: #2563eb;         /* Modern crisp blue */
             --primary-hover: #1d4ed8;   /* Darker blue hover */
-            --bg-main: #f8fafc;         /* Soft slate background */
-            --bg-card: #ffffff;         /* Pure white cards */
+            --bg-main: #f8fafc;         /* Soft slate neutral background */
+            --bg-card: #ffffff;         /* Clean white card background */
             --text-main: #0f172a;       /* Deep slate primary text */
             --text-muted: #475569;      /* Muted secondary text */
             --border-color: #e2e8f0;    /* Subtle border treatment */
             --badge-bg: #eff6ff;        /* Light blue accent for tags */
-            --badge-text: #1e40af;      /* Dark blue text for tags */
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --badge-text: #1e40af;      /* Deep blue text for tags */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
             --radius: 8px;
-            --max-width: 1024px;
+            --max-width: 960px;
         }
 
         * {
@@ -42,7 +41,7 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
@@ -60,7 +59,7 @@
         }
 
         /* ==========================================================================
-           2. LAYOUT & CONTAINERS
+           2. LAYOUT & UTILITIES
            ========================================================================== */
         .container {
             max-width: var(--max-width);
@@ -82,7 +81,58 @@
             font-weight: 700;
             color: var(--text-main);
             margin-bottom: 2rem;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.02em;
+        }
+
+        /* Card Component */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-main);
+            border-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.85rem;
+            font-size: 0.875rem;
         }
 
         /* ==========================================================================
@@ -91,7 +141,7 @@
         .navbar {
             position: sticky;
             top: 0;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
@@ -130,13 +180,13 @@
            4. HERO / HEADER SECTION
            ========================================================================== */
         .hero {
-            padding: 5rem 0 4rem;
+            padding: 5rem 0 4.5rem;
             background-color: var(--bg-card);
             border-bottom: 1px solid var(--border-color);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 780px;
         }
 
         .hero-title {
@@ -160,7 +210,395 @@
             gap: 1rem;
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
+        /* ==========================================================================
+           5. EDUCATION SECTION
+           ========================================================================== */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .degree-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .date-badge {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .institution {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .education-details ul {
+            list-style-type: disc;
+            margin-left: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .education-details li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ==========================================================================
+           6. PROJECTS GRID
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        /* ==========================================================================
+           7. EXPERIENCE & COMMUNITY SECTIONS
+           ========================================================================== */
+        .stack-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .community-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .community-role {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ==========================================================================
+           8. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* ==========================================================================
+           9. RESPONSIVE BREAKPOINTS
+           ========================================================================== */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.125rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 0.85rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION BAR -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">John Bro</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#community">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main>
+        
+        <!-- HEADER / HERO SECTION -->
+        <header id="about" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">John Bro</h1>
+                    <p class="hero-tagline">
+                        Freshman Computer Science Student at Florida Polytechnic University | Aspiring Software Engineer
+                    </p>
+                    <div class="hero-cta">
+                        <!-- Replace email address with your contact email -->
+                        <a href="mailto:jbro1234@floridapoly.edu" class="btn btn-primary">Contact Me</a>
+                        <!-- Replace href with your GitHub profile link -->
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub Profile</a>
+                        <!-- Replace href with your LinkedIn profile link -->
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="degree-title">Bachelor of Science in Computer Science</div>
+                        <div class="date-badge">Expected Graduation: May 2028</div>
+                    </div>
+                    <div class="institution">Florida Polytechnic University — Lakeland, FL</div>
+                    <div class="education-details">
+                        <p><strong>Current Coursework:</strong> Computer Science I (C++), Discrete Mathematics, Calculus II, Physics with Calculus.</p>
+                        <p style="margin-top: 0.5rem;"><strong>Academic Achievements:</strong> Presidential Scholar, GPA: 3.85 / 4.0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="card project-card">
+                        <div>
+                            <h3 class="project-title">Algorithmic Task Manager</h3>
+                            <p class="project-desc">
+                                A command-line productivity tool built in C++ that categorizes, sorts, and prioritizes daily tasks using dynamic data structures.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tag">C++</span>
+                                <span class="tag">Data Structures</span>
+                                <span class="tag">Git</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <!-- Replace with your project's GitHub link -->
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub Repo</a>
+                            <!-- Replace with live demo or details link -->
+                            <a href="#" class="btn btn-primary btn-sm">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="card project-card">
+                        <div>
+                            <h3 class="project-title">Campus Event Scraper</h3>
+                            <p class="project-desc">
+                                A Python script that parses university event schedules, extracting date and location metadata to generate structured JSON exports.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tag">Python</span>
+                                <span class="tag">BeautifulSoup</span>
+                                <span class="tag">JSON</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <!-- Replace with your project's GitHub link -->
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub Repo</a>
+                            <!-- Replace with live demo or details link -->
+                            <a href="#" class="btn btn-primary btn-sm">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="card project-card">
+                        <div>
+                            <h3 class="project-title">Personal Portfolio Website</h3>
+                            <p class="project-desc">
+                                A lightweight, responsive single-page portfolio website designed with semantic HTML5 and CSS3, deployed via GitHub Pages.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS3</span>
+                                <span class="tag">GitHub Pages</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <!-- Replace with your portfolio repo link -->
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub Repo</a>
+                            <!-- Replace with actual published site URL -->
+                            <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE / INTERNSHIPS SECTION -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience & Campus Roles</h2>
+                <div class="stack-list">
+                    
+                    <!-- Experience Item 1 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="degree-title">Peer Computer Lab Assistant</div>
+                            <div class="date-badge">August 2026 – Present</div>
+                        </div>
+                        <div class="institution">Florida Polytechnic University Academic Success Center</div>
+                        <div class="education-details">
+                            <ul>
+                                <li>Assist introductory Computer Science students with debugging basic C++ algorithms and syntax.</li>
+                                <li>Maintain lab hardware and ensure hardware functionality across 30+ workstations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 2 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="degree-title">IT Support Specialist Intern</div>
+                            <div class="date-badge">May 2026 – August 2026</div>
+                        </div>
+                        <div class="institution">Local Tech Solutions Inc.</div>
+                        <div class="education-details">
+                            <ul>
+                                <li>Configured software images across desktop workstations for enterprise deployments.</li>
+                                <li>Documented troubleshooting workflows and provided basic technical support for internal networks.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMUNITY & VOLUNTEERISM SECTION -->
+        <section id="community">
+            <div class="container">
+                <h2 class="section-title">Community & Leadership</h2>
+                <div class="community-grid">
+                    
+                    <!-- Community Item 1 -->
+                    <div class="card community-card">
+                        <h3>ACM Student Chapter</h3>
+                        <div class="community-role">Active Member</div>
+                        <p class="project-desc">
+                            Participate in weekly problem-solving workshops and technical speaker sessions focusing on software engineering principles.
+                        </p>
+                    </div>
+
+                    <!-- Community Item 2 -->
+                    <div class="card community-card">
+                        <h3>Linux Users Group (LUG)</h3>
+                        <div class="community-role">Member</div>
+                        <p class="project-desc">
+                            Attend hands-on workshops covering Unix terminal basics, shell scripting, and self-hosted server environments.
+                        </p>
+                    </div>
+
+                    <!-- Community Item 3 -->
+                    <div class="card community-card">
+                        <h3>PolyHack 2026</h3>
+                        <div class="community-role">Participant</div>
+                        <p class="project-desc">
+                            Collaborated in a 24-hour hackathon team to construct a prototype web application for campus resource tracking.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-links">
+                <!-- Replace with your social and contact links -->
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:jbro1234@floridapoly.edu">Email</a>
+            </div>
+            <p>&copy; 2026 John Bro. Hosted on GitHub Pages.</p>
+            <a href="#about" style="font-weight: 500;">Back to Top ↑</a>
+        </div>
+    </footer>
+
+</body>
+</html>
